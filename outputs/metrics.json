@@ -1,0 +1,111 @@
+{
+  "source": "https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/master/data/Telco-Customer-Churn.csv",
+  "dataset": {
+    "rows": 7043,
+    "columns": 20,
+    "target": "Churn",
+    "class_balance": {
+      "No": 5174,
+      "Yes": 1869
+    }
+  },
+  "observations": [
+    {
+      "title": "Churn sınıf dağılımı",
+      "text": "Veri setinde churn oranı % 26.5 iken, ayrılmayan müşteriler % 73.5 seviyesindedir. Bu dengesizlik, sınıflandırma modelinin doğrulama sırasında recall gibi duyarlı metriklere dikkatle bakmasını gerektirir."
+    },
+    {
+      "title": "Sözleşme türüne göre churn oranı",
+      "text": "Aylık sözleşmede churn oranı % 42.7 olarak hesaplanırken, daha uzun vadeli sözleşmelerde bu oran daha düşüktür. Bu bulgu, sözleşme süresinin müşteri kaybını belirleyen güçlü bir gösterge olduğunu destekler."
+    },
+    {
+      "title": "Tenure ve MonthlyCharges dağılımı",
+      "text": "Churn eden müşterilerin ortalama tenure değeri 18.0 ay, ayrılmayanların değeriyse 37.6 ay olarak ölçülmüştür. Ayrıca churn eden müşterilerin aylık ücret ortalaması 74.44 TL, ayrılmayanlarda ise 61.27 TL seviyesindedir."
+    }
+  ],
+  "cross_validation": {
+    "logistic_regression_f1_mean": 0.6326845529129916,
+    "random_forest_best_cv_f1": 0.6375479951139618
+  },
+  "models": {
+    "logistic_regression": {
+      "params": {
+        "max_iter": 1000,
+        "class_weight": "balanced",
+        "random_state": 42
+      },
+      "test_metrics": {
+        "accuracy": 0.7381121362668559,
+        "precision": 0.504302925989673,
+        "recall": 0.7834224598930482,
+        "f1": 0.6136125654450262,
+        "roc_auc": 0.8416388953473353,
+        "confusion_matrix": [
+          [
+            747,
+            288
+          ],
+          [
+            81,
+            293
+          ]
+        ]
+      },
+      "cv_f1_mean": 0.6326845529129916
+    },
+    "random_forest": {
+      "params": {
+        "best_params": {
+          "max_depth": 8,
+          "min_samples_leaf": 5,
+          "n_estimators": 200
+        },
+        "cv": 5,
+        "scoring": "f1"
+      },
+      "test_metrics": {
+        "accuracy": 0.758694109297374,
+        "precision": 0.5309090909090909,
+        "recall": 0.7807486631016043,
+        "f1": 0.6320346320346321,
+        "roc_auc": 0.8427962489343563,
+        "confusion_matrix": [
+          [
+            777,
+            258
+          ],
+          [
+            82,
+            292
+          ]
+        ]
+      },
+      "best_cv_f1": 0.6375479951139618
+    }
+  },
+  "comparison_table": [
+    {
+      "model": "Logistic Regression",
+      "accuracy": 0.7381121362668559,
+      "precision": 0.504302925989673,
+      "recall": 0.7834224598930482,
+      "f1": 0.6136125654450262,
+      "roc_auc": 0.8416388953473353,
+      "cv_f1_mean": 0.6326845529129916
+    },
+    {
+      "model": "Random Forest",
+      "accuracy": 0.758694109297374,
+      "precision": 0.5309090909090909,
+      "recall": 0.7807486631016043,
+      "f1": 0.6320346320346321,
+      "roc_auc": 0.8427962489343563,
+      "best_cv_f1": 0.6375479951139618,
+      "best_params": {
+        "max_depth": 8,
+        "min_samples_leaf": 5,
+        "n_estimators": 200
+      }
+    }
+  ]
+}
